@@ -1,0 +1,24 @@
+{
+  "name": "serien-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ortegamarcel/msi-react.git"
+  },
+  "keywords": [
+    "msi",
+    "seminar",
+    "react"
+  ],
+  "author": "Marcel und Marvin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ortegamarcel/msi-react/issues"
+  },
+  "homepage": "https://github.com/ortegamarcel/msi-react#readme"
+}
