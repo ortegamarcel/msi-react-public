@@ -1,5 +1,6 @@
 import { EventEmitter } from 'events';
 import Genres from '../enums/Genres';
+import dispatcher from '../dispatcher/dispatcher';
 
 class SeriesStore extends EventEmitter {
     constructor() {
@@ -11,7 +12,7 @@ class SeriesStore extends EventEmitter {
             start_year: 2016,
             end_year: null,
             genres: [
-                Genres.ABENTEUER, 
+                Genres.ABENTEUER,
                 Genres.DRAMA ],
             land: "USA",
             rating: 7,
@@ -40,11 +41,11 @@ class SeriesStore extends EventEmitter {
             tags: []
         }];
     }
-    
+
     getAll() {
         return this.series;
     }
-    
+
     getById(id) {
         return this.series[0];
         /*for (var serie in this.series) {
@@ -54,7 +55,31 @@ class SeriesStore extends EventEmitter {
         }
         return null;*/
     }
+
+    // param series - one or more series
+    push(series) {
+        this.series.push(series);
+        this.emit("changed");
+    }
+
+    handleActions(action) {
+        switch (action.type) {
+            case "FETCH_SERIES": {
+                this.emit({type: "fetching_series"});
+            }
+
+            case "RECEIVE_SERIES": {
+                this.push(action.series);
+            }
+
+            case "ADD_SERIE": {
+                this.push(action.serie);
+            }
+        }
+    }
 }
 
 const seriesStore = new SeriesStore;
+dispatcher.register(seriesStore.handleActions.bind(seriesStore));
+window.dispatcher = dispatcher;
 export default seriesStore;
