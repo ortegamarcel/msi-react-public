@@ -89,15 +89,13 @@ class SeriesStore extends EventEmitter {
     }
 
     findById(id) {
-        if (id == null || id.constructor !== Number) {
+        if (id == null) {
             console.log("Ungültige ID.");
             return null;
         }
-        return this.getFiltered((serie) => {
-            if (serie.id === id) {
-                return serie;
-            }
-        });
+        return this.series.filter((serie) => {
+            return serie.id == id;
+        })[0];
     }
 
     // param series - one or more series

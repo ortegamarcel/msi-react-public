@@ -6,7 +6,7 @@ export default class Filter {
         }
         let filterStr, filterRegex;
         this.filterStr = filter ? filter : "";
-        this.filterRegex = new RegExp(this.filterStr);
+        this.filterRegex = new RegExp(this.filterStr, "i");
     }
 
     set(filter) {
@@ -15,7 +15,7 @@ export default class Filter {
             this.filterRegex = new RegExp();
         } else if (filter.constructor === String) {
             this.filterStr = filter;
-            this.filterRegex = new RegExp(filter);
+            this.filterRegex = new RegExp(filter, "i");
             return true;
         } else {
             console.log("filter must be typeof String");

@@ -32,7 +32,6 @@ export default class SeriesFilter extends React.Component {
     }
 
     handleDescriptionFilterChanged(e) {
-        console.log(e.target.value);
         FilterActions.setDescriptionFilter(e.target.value);
     }
 
