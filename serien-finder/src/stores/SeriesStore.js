@@ -46,14 +46,58 @@ class SeriesStore extends EventEmitter {
         return this.series;
     }
 
-    getById(id) {
-        return this.series[0];
-        /*for (var serie in this.series) {
+    getFiltered(filterFunc) {
+        return this.series.map(filterFunc);
+    }
+
+    // Finds serie(s) by title
+    // param title - RegExp or string
+    findByTitle(title) {
+        if (title == null) { return this.getAll(); }
+        if (title.constructor !== RegExp && title.constructor !== String) {
+            return null;
+        }
+
+        let regex = title;
+        if (title.constructor === String) {
+            regex = new RegExp(title);
+        }
+        return this.getFiltered((serie) => {
+            if (regex.test(serie.title)) {
+                return serie;
+            }
+        });
+    }
+
+    // Find all series that contain the text in their title or description
+    // param text - typeof String or RegExp
+    findByText(text) {
+        if (text == null) { return this.getAll(); }
+        if (text.constructor !== RegExp && text.constructor !== String) {
+            return null;
+        }
+
+        let regex = text;
+        if (text.constructor === String) {
+            regex = new RegExp(text);
+        }
+        return this.getFiltered((serie) => {
+            if (regex.test(serie.title) || regex.test(serie.description)) {
+                return serie;
+            }
+        });
+    }
+
+    findById(id) {
+        if (id == null || id.constructor !== Number) {
+            console.log("Ungültige ID.");
+            return null;
+        }
+        return this.getFiltered((serie) => {
             if (serie.id === id) {
                 return serie;
             }
-        }
-        return null;*/
+        });
     }
 
     // param series - one or more series
@@ -81,5 +125,4 @@ class SeriesStore extends EventEmitter {
 
 const seriesStore = new SeriesStore;
 dispatcher.register(seriesStore.handleActions.bind(seriesStore));
-window.dispatcher = dispatcher;
 export default seriesStore;
