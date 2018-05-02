@@ -1,11 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default class Serie extends React.Component {
-    constructor() {
-        super();
-    }
-    
+export default class Serie extends React.Component {    
     render() {
         const { serie } = this.props;
         
