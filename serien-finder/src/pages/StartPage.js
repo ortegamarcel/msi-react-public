@@ -5,7 +5,9 @@ import SeriesFilter from '../components/startpage/SeriesFilter';
 import SeriesStore from '../stores/SeriesStore';
 import FilterStore from '../stores/FilterStore';
 
-export default class StartPage extends React.Component {
+import muiThemeable from 'material-ui/styles/muiThemeable';
+
+class StartPage extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -75,3 +77,5 @@ export default class StartPage extends React.Component {
         );
     }
 }
+
+export default muiThemeable()(StartPage);
