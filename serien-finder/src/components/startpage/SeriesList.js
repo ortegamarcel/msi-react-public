@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Serie from './Serie';
-
+import muiThemeable from 'material-ui/styles/muiThemeable';
 import {
   Table,
   TableBody,
@@ -11,15 +11,16 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-export default class SeriesList extends React.Component {
+class SeriesList extends React.Component {
     renderSeriesComponents() {
         const { series } = this.props;
 
         return series.map((serie) => {
             return (
-                <li>
-                    <Serie key={serie.id} serie={serie} />
-                </li>
+                <TableRow>
+                    <TableRowColumn>{serie.title}</TableRowColumn>
+                    <TableRowColumn>{serie.genres.join(', ')}</TableRowColumn>
+                </TableRow>
             );
         });
     }
@@ -27,16 +28,18 @@ export default class SeriesList extends React.Component {
     render() {
         return (
             <Table>
-            <TableHeader>
-                <TableRow>
-                    <TableHeaderColumn>Serie</TableHeaderColumn>
-                    <TableHeaderColumn>Genres</TableHeaderColumn>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                
-            </TableBody>
+                <TableHeader>
+                    <TableRow>
+                        <TableHeaderColumn>Serie</TableHeaderColumn>
+                        <TableHeaderColumn>Genres</TableHeaderColumn>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {this.renderSeriesComponents()}
+                </TableBody>
             </Table>
         );
     }
 }
+
+export default muiThemeable()(SeriesList);
