@@ -30,7 +30,9 @@ class SeriesList extends React.Component {
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHeaderColumn>Serie</TableHeaderColumn>
+                        <TableHeaderColumn>
+                            Serien ({this.props.series.length}/{this.props.maxSeriesCount})
+                        </TableHeaderColumn>
                         <TableHeaderColumn>Genres</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>

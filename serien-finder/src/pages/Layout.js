@@ -7,7 +7,7 @@ import Nav from '../components/layout/Nav';
 import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import muiTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import muiTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 
 export default class Layout extends React.Component {
     constructor() {

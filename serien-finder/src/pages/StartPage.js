@@ -70,9 +70,8 @@ class StartPage extends React.Component {
     render() {
         return (
             <div>
-                <h3>Alle Serien ({this.state.filteredSeries.length}/{this.state.series.length}):</h3>
                 <SeriesFilter />
-                <SeriesList series={this.state.filteredSeries} />
+                <SeriesList series={this.state.filteredSeries} maxSeriesCount={this.state.series.length} />
             </div>
         );
     }
