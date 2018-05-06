@@ -95,11 +95,13 @@ class SeriesFilter extends React.Component {
                       maxSearchResults={5}
                       openOnFocus={true}
                     />
+                    <ToolbarSeparator style={{opacity: 0}} />
                     <TextField
                       hintText="Beschreibungen durchsuchen"
                       value={this.state.descriptionFilter.toString()}
                       onChange={this.handleDescriptionFilterChanged.bind(this)}
                     />
+                    <ToolbarSeparator />
                     <IconButton onClick={this.resetFilter.bind(this)} tooltip="Alle Filter entfernen">
                         <CloseIcon color={palette.textColor} />
                     </IconButton>
@@ -110,11 +112,3 @@ class SeriesFilter extends React.Component {
 }
 
 export default muiThemeable()(SeriesFilter);
-
-/*
-<label for="titleFilter">Title</label>
-<input id="titleFilter" value={this.state.titleFilter.toString()} onChange={this.handleTitleFilterChanged.bind(this)} />
-<label for="descriptionFilter">Beschreibung</label>
-<input id="descriptionFilter" value={this.state.descriptionFilter.toString()} onChange={this.handleDescriptionFilterChanged.bind(this)} />
-<button onClick={this.resetFilter.bind(this)}>Reset Filter</button>
-*/
