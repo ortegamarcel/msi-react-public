@@ -8,6 +8,7 @@ import * as FilterActions from '../../actions/FilterActions';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import AutoComplete from 'material-ui/AutoComplete';
 import IconButton from 'material-ui/IconButton';
+import TextField from 'material-ui/TextField';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import {CloseIcon} from 'mdi-react';
@@ -16,28 +17,25 @@ class SeriesFilter extends React.Component {
     constructor() {
         super();
         const series = SeriesStore.getAll();
-        const titles = this.getTitles(series);
-        const tags = this.getTags(series);
         this.state = {
             titleFilter: FilterStore.titleFilter,
             descriptionFilter: FilterStore.descriptionFilter,
-            titles,
-            tags
+            series
         };
-        this.updateDataSources();
+        this.updateDataSource();
 
         this.update = this.update.bind(this);
-        this.updateDataSources = this.updateDataSources.bind(this);
+        this.updateDataSource = this.updateDataSource.bind(this);
     }
 
     componentWillMount() {
         FilterStore.on("changed", this.update);
-        SeriesStore.on("changed", this.updateDataSources);
+        SeriesStore.on("changed", this.updateDataSource);
     }
 
     componentWillUnmount() {
         FilterStore.removeListener("changed", this.update);
-        SeriesStore.removeListener("changed", this.updateDataSources);
+        SeriesStore.removeListener("changed", this.updateDataSource);
     }
 
     update() {
@@ -51,8 +49,8 @@ class SeriesFilter extends React.Component {
         FilterActions.setTitleFilter(searchText);
     }
 
-    handleDescriptionFilterChanged(searchText, dataSrouce, params) {
-        FilterActions.setDescriptionFilter(searchText);
+    handleDescriptionFilterChanged(e, newValue) {
+        FilterActions.setDescriptionFilter(newValue);
     }
 
     resetFilter(e) {
@@ -61,45 +59,23 @@ class SeriesFilter extends React.Component {
     }
 
     // Calls automatically when series store was changed
-    updateDataSources() {
+    updateDataSource() {
         const series = SeriesStore.getAll();
-        const titles = this.getTitles(series);
-        const tags = this.getTags(series);
-
-        this.setState({titles, tags});
-    }
-
-    getTitles(series) {
-        return series.map(serie => {
-            return serie.title;
-        });
-    }
-
-    getTags(series) {
-        const tags2D = series.map(serie => {
-            return serie.tags;
-        });
-
-        let tags = [];
-        for (let i = 0; i < tags2D.length; i++) {
-            tags = tags.concat(tags2D[i]);
-        }
-        return tags;
+        this.setState({series});
     }
 
     filterFunction(searchText, key) {
-        console.log(searchText, searchText.constructor, key);
         if (searchText.constructor === String) {
             return new Filter(searchText).match(key);
         } else if (searchText.constructor === Filter) {
             return searchText.match(key);
         } else {
-            return true;
+            return false;
         }
     }
 
     render() {
-        const {titleFilter, titles, tags} = this.state;
+        const {titleFilter, series} = this.state;
         const {muiTheme} = this.props;
         const {palette} = muiTheme;
 
@@ -112,11 +88,17 @@ class SeriesFilter extends React.Component {
                     <AutoComplete
                       ref={`titleFilter`}
                       hintText="Nach Titel suchen"
-                      dataSource={titles}
+                      dataSource={series}
+                      dataSourceConfig={{text:'title', value:'id'}}
                       onUpdateInput={this.handleTitleFilterChanged.bind(this)}
                       filter={this.filterFunction.bind(this)}
                       maxSearchResults={5}
                       openOnFocus={true}
+                    />
+                    <TextField
+                      hintText="Beschreibungen durchsuchen"
+                      value={this.state.descriptionFilter.toString()}
+                      onChange={this.handleDescriptionFilterChanged.bind(this)}
                     />
                     <IconButton onClick={this.resetFilter.bind(this)} tooltip="Alle Filter entfernen">
                         <CloseIcon color={palette.textColor} />
