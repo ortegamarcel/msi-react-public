@@ -8,6 +8,8 @@ import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
 import {List, ListItem} from 'material-ui/List';
 
+import '../../styles/paper.css';
+
 class SeriesList extends React.Component {
     renderSeriesComponents() {
         const { series } = this.props;
@@ -27,14 +29,8 @@ class SeriesList extends React.Component {
     }
 
     render() {
-        const style = {
-            display: "block",
-            minHeight: "200px",
-            width: "100%"
-        }
-
         return (
-            <Paper rounded={false} style={style} zDepth={0} >
+            <Paper rounded={false} className="default-paper" zDepth={0} >
                 <List>
                     <Divider />
                     {this.renderSeriesComponents()}

@@ -101,7 +101,7 @@ class SeriesFilter extends React.Component {
                     />
                     <ToolbarSeparator style={{opacity: 0}} />
                     <TextField
-                      hintText="Beschreibungen durchsuchen"
+                      hintText="nach Schlagwörtern suchen"
                       value={this.state.descriptionFilter.toString()}
                       onChange={this.handleDescriptionFilterChanged.bind(this)}
                     />

@@ -1,0 +1,19 @@
+.header {
+    font-size: 18pt;
+}
+
+.header-large {
+    font-size: 20pt;
+}
+
+.header-suffix {
+    font-size: 10pt;
+}
+
+.subheader {
+    font-size: 12pt;
+}
+
+.subheader-large {
+    font-size: 14pt;
+}

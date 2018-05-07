@@ -1,0 +1,9 @@
+.default-paper {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.default-layout-paper {
+    padding: 24px 24px;
+}
