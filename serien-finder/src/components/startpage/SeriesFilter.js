@@ -74,15 +74,19 @@ class SeriesFilter extends React.Component {
         }
     }
 
+    getTitle() {
+        return "Serien Treffer: " + this.props.searchHits;
+    }
+
     render() {
         const {titleFilter, series} = this.state;
-        const {muiTheme} = this.props;
+        const {muiTheme, numOfFilteredSeries} = this.props;
         const {palette} = muiTheme;
 
         return (
             <Toolbar>
                 <ToolbarGroup firstChild={false}>
-                    <ToolbarTitle text="Filter" />
+                    <ToolbarTitle text={this.getTitle()} />
                 </ToolbarGroup>
                 <ToolbarGroup>
                     <AutoComplete

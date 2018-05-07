@@ -49,7 +49,7 @@ class Nav extends React.Component {
     render() {
         return (
             <AppBar
-              title="React Demo | MSI SS18"
+              title={this.props.title}
               onLeftIconButtonClick={this.toggleMenu.bind(this)}
             >
                 <Drawer

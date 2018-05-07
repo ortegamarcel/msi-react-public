@@ -13,7 +13,7 @@ export default class Layout extends React.Component {
     constructor() {
         super();
         this.state = {
-            title: "Willkommen",
+            title: "Serializer",
             copyright: "Erstellt von Marcel und Marvin, 2018"
         };
     }
@@ -22,13 +22,13 @@ export default class Layout extends React.Component {
         const style = {
             display: "block",
             width: "100%",
-            minHeight: "500px"
+            height: "100%"
         };
 
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
                 <Paper style={style} rounded={false}>
-                    <Nav />
+                    <Nav title={this.state.title} />
                     {this.props.children}
                     <Footer copyright={this.state.copyright} />
                 </Paper>

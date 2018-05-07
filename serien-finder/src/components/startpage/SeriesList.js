@@ -1,15 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import Serie from './Serie';
+
 import muiThemeable from 'material-ui/styles/muiThemeable';
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
+import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
+import {List, ListItem} from 'material-ui/List';
 
 class SeriesList extends React.Component {
     renderSeriesComponents() {
@@ -17,31 +14,48 @@ class SeriesList extends React.Component {
 
         return series.map((serie) => {
             return (
-                <TableRow>
-                    <TableRowColumn>{serie.title}</TableRowColumn>
-                    <TableRowColumn>{serie.genres.join(', ')}</TableRowColumn>
-                </TableRow>
+                <div>
+                    <ListItem
+                      containerElement={<Link to={"/serie/" + serie.id} />}
+                      primaryText={serie.title}
+                      secondaryText={serie.genres.join(', ')}
+                    />
+                    <Divider />
+                </div>
             );
         });
     }
 
     render() {
+        const style = {
+            display: "block",
+            minHeight: "200px",
+            width: "100%"
+        }
+
         return (
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHeaderColumn>
-                            Serien ({this.props.series.length}/{this.props.maxSeriesCount})
-                        </TableHeaderColumn>
-                        <TableHeaderColumn>Genres</TableHeaderColumn>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
+            <Paper rounded={false} style={style} zDepth={0} >
+                <List>
+                    <Divider />
                     {this.renderSeriesComponents()}
-                </TableBody>
-            </Table>
+                </List>
+            </Paper>
         );
     }
 }
 
 export default muiThemeable()(SeriesList);
+
+/*
+<TableHeader>
+    <TableRow>
+        <TableHeaderColumn>
+            Serien ({this.props.series.length}/{this.props.maxSeriesCount})
+        </TableHeaderColumn>
+        <TableHeaderColumn>Genres</TableHeaderColumn>
+    </TableRow>
+</TableHeader>
+<TableBody>
+    {this.renderSeriesComponents()}
+</TableBody>
+*/

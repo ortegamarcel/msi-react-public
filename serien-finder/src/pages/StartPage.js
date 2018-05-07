@@ -70,7 +70,7 @@ class StartPage extends React.Component {
     render() {
         return (
             <div>
-                <SeriesFilter />
+                <SeriesFilter searchHits={this.state.filteredSeries.length} />
                 <SeriesList series={this.state.filteredSeries} maxSeriesCount={this.state.series.length} />
             </div>
         );
