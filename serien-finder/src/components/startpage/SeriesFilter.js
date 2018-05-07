@@ -38,6 +38,11 @@ class SeriesFilter extends React.Component {
         SeriesStore.removeListener("changed", this.updateDataSource);
     }
 
+    componentDidMount() {
+        if(FilterStore.titleFilter.toString() != "")
+            this.refs[`titleFilter`].setState({searchText: FilterStore.titleFilter});
+    }
+
     update() {
         this.setState({
             titleFilter: FilterStore.titleFilter,

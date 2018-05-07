@@ -18,13 +18,14 @@ class StartPage extends React.Component {
             },
             filteredSeries: SeriesStore.getAll()
         };
-        this.updateFilters();
-        this.updateFilteredSeries();
 
         this.reloadSeries = this.reloadSeries.bind(this);
     }
 
     componentWillMount() {
+        this.updateFilters();
+        this.updateFilteredSeries();
+
         SeriesStore.on("changed", this.reloadSeries);
         FilterStore.on("changed", this.reloadSeries);
     }

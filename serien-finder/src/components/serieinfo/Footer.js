@@ -1,15 +1,18 @@
 import React from 'react';
-import BackLink from '../BackLink';
+import {Link} from 'react-router-dom';
+//import BackLink from '../BackLink';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import FlatButton from 'material-ui/FlatButton';
 
 class Footer extends React.Component {
     render() {
         return (
-            <FlatButton
-              label="Zurück"
-              containerElement={<BackLink context={this} />}
-            />
+            <div>
+                <FlatButton
+                  label="Zurück"
+                  containerElement={<Link to="/series" />}
+                />
+            </div>
         );
     }
 }
