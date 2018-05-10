@@ -14,14 +14,17 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "npm run deploy-windows && npm run deploy-in-docker",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy-windows": "copy-item -Recurse build ../webserver",
-    "deploy-linux": "cp -R build webserver",
-    "deploy-in-docker": "docker rm -f serializer || true && docker build -t msi-react/webserver ../webserver && docker run -p 80:80 -d --name serializer msi-react/webserver",
+    "deploy": "npm run copy-build && npm run deploy-in-docker",
+    "webserver": "npm run copy-build && node ../webserver/server.js",
+    "eject": "react-scripts eject",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+
+    "predeploy": "npm run build",
+    "copy-build": "cpx build ../webserver",
+    "deploy-in-docker": "npm run build-docker-image && npm run start-docker-container",
+    "build-docker-image": "docker build -t msi-react/webserver ../webserver",
+    "start-docker-container": "docker run -p 80:80 -d msi-react/webserver"
   }
 }
