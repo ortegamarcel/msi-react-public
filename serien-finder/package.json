@@ -13,6 +13,9 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4"
   },
+  "config": {
+    "local_port": "80"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -25,6 +28,6 @@
     "copy-build": "cpx build ../webserver",
     "deploy-in-docker": "npm run build-docker-image && npm run start-docker-container",
     "build-docker-image": "docker build -t msi-react/webserver ../webserver",
-    "start-docker-container": "docker run -p 80:80 -d msi-react/webserver"
+    "start-docker-container": "docker run -p $npm_package_config_local_port:80 -d msi-react/webserver"
   }
 }
