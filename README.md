@@ -58,14 +58,14 @@ Da bei jedem Deployen ein neuer Container erzeugt wird, kann es zu einem Error k
 #### Port-Mapping
 Der Webserver im Container lauscht auf den Port 80 und wird standardmäßig auf den **Port 80** gemappt. Um den Server-Port auf einen anderen Port zu mappen, muss man den `local_port` in `/serien-finder/package.json` editieren.
 
-```
+>```
 >// /serien-finder/package.json
 >//...
 >"config": {
 >  "local_port": "80"
 >},
 >//...
-```
+>```
 
 > **Wichtig**: Der `local_port` ändert nicht den eigentlichen Server-Port, sonder nur das Mapping!
 
