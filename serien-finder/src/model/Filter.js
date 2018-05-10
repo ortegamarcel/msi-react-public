@@ -15,7 +15,12 @@ export default class Filter {
             this.filterRegex = new RegExp();
         } else if (filter.constructor === String) {
             this.filterStr = filter;
-            this.filterRegex = new RegExp(filter, "i");
+            try {
+                this.filterRegex = new RegExp(filter, "i");
+            } catch(error) { // filter couldn't be converted to RegExp
+                console.log(error);
+                this.filterRegex = new RegExp();
+            }
             return true;
         } else {
             console.log("filter must be typeof String");
