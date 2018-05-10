@@ -14,7 +14,7 @@
     "react-scripts": "1.1.4"
   },
   "config": {
-    "local_port": "80"
+    "local_port": "8080"
   },
   "scripts": {
     "start": "react-scripts start",

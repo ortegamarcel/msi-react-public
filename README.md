@@ -12,13 +12,13 @@
 
 ## Dev Server starten
 
-```npm start```
+```npm start``` (in `/serien-finder`)
 
 
 
 ## Builden
 
-```npm run build```
+```npm run build``` (in `/serien-finder`)
 
 Bündelt alle JS-Dateien inkl. Dependencies zu einer Bundle-Datei. Der komplette output landet in `/serien-finder/build`. Ein Webserver benötigt lediglich diesen Ordner und sonst nichts.
 
@@ -31,15 +31,14 @@ Zum Deployed der App, gibt es mehrere Möglichkeiten. Entweder man startet den m
 ### Webserver deployen
 
 Bevor man den Webserver lokal starten kann, müssen die Webserver-Dependencies installiert werden:
-1. ```cd webserver```
-2. ```npm install```
+```npm install``` (in `/webserver`)
 
 > **Achtung**: Wenn noch kein Build durchgeführt wurde, muss das spätestens jetzt gemacht werden. 
-> ```npm run build```
+> ```npm run build``` (in `/serien-finder`)
 
 Jetzt muss man nur noch den letzten Build (`/serien-finder/build`) in `/webserver` kopieren und kann dann die `server.js` mit NodeJS starten.  Für das Kopieren und Starten gibt es den `webserver`-Befehl:
 
-```npm run webserver``` 
+```npm run webserver``` (in `/serien-finder`)
 
 > **Hinweis**: Der Server lauscht auf **Port 80**. Das heißt, dass dieser nicht auf dem Rechner/Server belegt sein darf.
 
@@ -49,7 +48,7 @@ Jetzt muss man nur noch den letzten Build (`/serien-finder/build`) in `/webserve
 
 Mit `deploy` werden alle benötigten Dateien (`/serien-finder/build`) automatisch gebuildet und in `/webserver` kopiert. Dann wird ein neues Docker-Image erzeugt und anschießend gestartet.
 
-```npm run deploy```
+```npm run deploy``` (in `/serien-finder`)
 
 #### Häufige Fehler
 
