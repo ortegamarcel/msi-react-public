@@ -14,11 +14,15 @@
 
 ```npm start```
 
+
+
 ## Builden
 
 ```npm run build```
 
 Bündelt alle JS-Dateien inkl. Dependencies zu einer Bundle-Datei. Der komplette output landet in `/serien-finder/build`. Ein Webserver benötigt lediglich diesen Ordner und sonst nichts.
+
+
 
 ## Deployen
 
@@ -65,7 +69,10 @@ Der Webserver im Container lauscht auf den Port 80 und wird standardmäßig auf 
 
 > **Wichtig**: Der `local_port` ändert nicht den eigentlichen Server-Port, sonder nur das Mapping!
 
-### Ports ändern
+
+
+## Ports ändern
+
 Der Server-Port kann nicht so ohne weiteres geändert werden. Weder `/webserver/server.js` noch die `package.json`-Skripte sind dafür parametrisiert. Wenn man den Port in `/webserver/server.js` ändert müssen auch die Skripte (`/serien-finder/package.json`) und `/webserver/Dockerfile` angepasst werden.
 
 Wenn man den Webserver in einem Docker-Container laufen lässt, kann der gemappte Port, mit dem man auf den Server zugreift geändert werden. Wie das funktioniert steht im Kapitel `Webserver in Docker deployen` -> `Port-Mapping`.
