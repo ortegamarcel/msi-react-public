@@ -2,6 +2,8 @@
 
 > **Wichtig**: Um mit diesem Projekt etwas sinnvolles anfangen zu können, benötigt man **NodeJS** und **npm**.
 
+**Diese Schritte müssen befolgt werden, damit alles andere funktioniert.**
+
 1. NodeJS (+npm) installieren
 2. `git clone https://github.com/ortegamarcel/msi-react-git`
 2. `npm install` - installiert alle Dependencies
