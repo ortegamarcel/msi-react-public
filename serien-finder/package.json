@@ -14,7 +14,7 @@
     "react-scripts": "1.1.4"
   },
   "config": {
-    "local_port": "8080"
+    "hostPort": "80"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,6 +28,9 @@
     "copy-build": "cpx build ../webserver",
     "deploy-in-docker": "npm run build-docker-image && npm run start-docker-container",
     "build-docker-image": "docker build -t msi-react/webserver ../webserver",
-    "start-docker-container": "docker run -p $npm_package_config_local_port:80 -d msi-react/webserver"
+    "start-docker-container": "npm run start-docker-container:windows",
+
+    "start-docker-container:windows": "docker run -p %npm_package_config_hostPort%:80 -d msi-react/webserver",
+    "start-docker-container:linux": "docker run -p $npm_package_config_hostPort:80 -d msi-react/webserver"
   }
 }

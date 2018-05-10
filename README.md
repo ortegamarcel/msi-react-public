@@ -56,18 +56,18 @@ Mit `deploy` werden alle benötigten Dateien (`/serien-finder/build`) automatisc
 Da bei jedem Deployen ein neuer Container erzeugt wird, kann es zu einem Error kommen, wenn ein alter Container noch vorhanden ist, der auf den selben Port gemappt ist. In diesem Fall muss man mit `docker rm -f <container_name>` den alten Container löschen. Die Cotnainer-Bezeichnung (`container_name`) kann man mit `docker ps -a` herausfinden. Alternativ können auch alle Container gelöscht werden: `docker rm -f $(docker ps -a -q)`
 
 #### Port-Mapping
-Der Webserver im Container lauscht auf den Port 80 und wird standardmäßig auf den **Port 80** gemappt. Um den Server-Port auf einen anderen Port zu mappen, muss man den `local_port` in `/serien-finder/package.json` editieren.
+Der Webserver im Container lauscht auf den Port 80 und wird standardmäßig auf den **Port 80** gemappt. Um den Server-Port auf einen anderen Port zu mappen, muss man den `hostPort` in `/serien-finder/package.json` editieren.
 
 >```
 >// /serien-finder/package.json
 >//...
 >"config": {
->  "local_port": "80"
+>  "hostPort": "80"
 >},
 >//...
 >```
 
-> **Wichtig**: Der `local_port` ändert nicht den eigentlichen Server-Port, sonder nur das Mapping!
+> **Wichtig**: Der `hostPort` ändert nicht den eigentlichen Server-Port, sonder nur das Mapping!
 
 
 
