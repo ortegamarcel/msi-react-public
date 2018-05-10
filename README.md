@@ -2,7 +2,7 @@
 
 > **Wichtig**: Um mit diesem Projekt etwas sinnvolles anfangen zu können, benötigt man **NodeJS** und **npm**.
 
-**Diese Schritte müssen befolgt werden, damit alles andere funktioniert.**
+**Diese Schritte müssen befolgt werden, damit alles andere funktioniert:**
 
 1. NodeJS (+npm) installieren
 2. `git clone https://github.com/ortegamarcel/msi-react-git`
@@ -33,7 +33,7 @@ Bevor man den Webserver lokal starten kann, müssen die Webserver-Dependencies i
 > **Achtung**: Wenn noch kein Build durchgeführt wurde, muss das spätestens jetzt gemacht werden. 
 > ```npm run build```
 
-Jetzt muss man nur noch den letzten Build (`/serien-finder/build`) in `/webserver` kopieren und kann dann die `server.js` mit NodeJS starten.  Dafür gibt es den `webserver`-Befehl:
+Jetzt muss man nur noch den letzten Build (`/serien-finder/build`) in `/webserver` kopieren und kann dann die `server.js` mit NodeJS starten.  Für das Kopieren und Starten gibt es den `webserver`-Befehl:
 
 ```npm run webserver``` 
 
@@ -41,19 +41,27 @@ Jetzt muss man nur noch den letzten Build (`/serien-finder/build`) in `/webserve
 
 ### Webserver in Docker deployen
 
+> **Wichtig**: Um in Docker deployen zu können, muss Docker auf dem Rechner installiert sein.
+
+Mit `deploy` werden alle benötigten Dateien (`/serien-finder/build`) automatisch gebuildet und in `/webserver` kopiert. Dann wird ein neues Docker-Image erzeugt und anschießend gestartet.
+
 ```npm run deploy```
 
-Alle benötigten Dateien (`/serien-finder/build`) werden automatisch erzeugt und in `/webserver` kopiert. Dann wird ein neues Docker-Image erzeugt und anschießend gestartet.
+#### Häufige Fehler
 
-> #### Ports ändern (Port-Mapping)
-> **Hinweis**: Der Webserver im Container lauscht auf den Port 80 und wird standardmäßig auf den **Port 80** gemappt. Um den Server-Port auf einen anderen Port zu mappen, muss man den `local_port` in `/serien-finder/package.json` editieren.
+Da bei jedem Deployen ein neuer Container erzeugt wird, kann es zu einem Error kommen, wenn ein alter Container noch vorhanden ist, der auf den selben Port gemappt ist. In diesem Fall muss man mit `docker rm -f <container_name>` den alten Container löschen. Die Cotnainer-Bezeichnung (`container_name`) kann man mit `docker ps -a` herausfinden. Alternativ können auch alle Container gelöscht werden: `docker rm -f $(docker ps -a -q)`
+
+#### Ports ändern (Port-Mapping)
+Der Webserver im Container lauscht auf den Port 80 und wird standardmäßig auf den **Port 80** gemappt. Um den Server-Port auf einen anderen Port zu mappen, muss man den `local_port` in `/serien-finder/package.json` editieren.
+
 >```
 >//...
 >"config": {
-     "local_port": "80"
-  },
-  //...
-  ```
+>  "local_port": "80"
+>},
+>//...
+>```
+
 > **Wichtig**: Der `local_port` ändert nicht den eigentlichen Server-Port, sonder nur das Mapping!
 
 ### Ports ändern
